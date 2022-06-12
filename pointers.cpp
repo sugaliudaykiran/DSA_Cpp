@@ -1,6 +1,47 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+void print_P(int *p)
+    {
+        cout << *p << endl;
+    }
+
+void incrementPointer(int *p)
+    {
+        p = p + 1;  //  In this case we increment the address by 4 bytes..
+    }
+
+void increment_P(int *p)
+    {
+        (*p)++;     //  By doing de-references and increment the value..
+    }
+
+int sum(int *a, int size)  //  here the arr is an pointer which refer to the array..
+{
+    cout << sizeof(a) << endl;
+    int res = 0;
+    for (int i=0; i<size; i++)
+    {
+        res += a[i];
+    }
+    return res;
+}
+
+void increment1(int **p)
+{
+    p = p + 1;          //  It does change on copy pointer..
+}
+
+void increment2(int **p)
+{
+    *p += 1;            //  It does change on 'p' by de-references..
+}
+
+void increment3(int **p)
+{
+    **p += 1;           //  It does changes on the value of 'i'..
+}
+
 int32_t main()
 {
 //     int i = 10;
@@ -84,6 +125,7 @@ int32_t main()
 
     
     */ 
+/*
 
     int a[] = {1, 2, 3};
     char b[] = "abc";
@@ -110,6 +152,48 @@ int32_t main()
         char ss[]= "hello";
         char *p = ss;
         cout << ss[0] << " " << p[0];   //  O/p :-  h   h
+*/ 
+/*
+        
+    int i = 10;
+    int *p = &i;
+    print_P(p);
+
+    cout << p << endl;
+    incrementPointer(p);
+    cout << p << endl;      //  It does no change, because the function updates on the copy address..
+
+    cout << *p << endl;
+    increment_P(p);
+    cout << *p << endl;         //  In this case, we are derefencing the pointer and increment the value..
+
+    int a[10];
+    cout << sizeof(a) << endl;
+    cout << sum(a, 10) << endl;     //  Here the 'a' is send as array, but refer as pointer in the function..
+    cout << sum(a+2, 8) << endl;    //  We can refer a particular range (or) part of array..
+
+*/
+    //  Double Pointer :-
+    int i = 10;
+    int *p = &i;
+    
+    int **p2 = &p;
+
+    cout << p2 << endl;
+    cout << &p << endl;     //  Both prints the address of 'p'..
+
+    cout << p << endl;
+    cout << *p2 << endl;    //  This prints the address of 'i'..
+    cout << &i << endl;
+
+    cout << i << endl;
+    cout << *p << endl;     //  This prints the value of 'i'..
+    cout << **p2 << endl;   
+
+    increment1(p2);         //  In this it does no changes..
+    increment2(p2);         //  In this it does increment on address of 'i'.. by derefernces..
+    increment3(p2);         //  In this it does increment on value of 'i'..  by double dereferences..
+
     return 0;
 }
 
@@ -148,5 +232,69 @@ int32_t main()
 
     Characters and Pointers :-
         In case of characters the pointer doesn't reference the address do prints all the character upto the '\n' character..
+-------------------->
+    Pointers and Functions  :-
+        In this Functions, the Pointers are given as address reference,while in functions we does the changes on derefencing it..
+    
+    Arrays and Functions :-
+        In functions the array is act as a pointer and not an array..
+        In functions we can send the particular range (or) part of an array..
+
+    What will be the output ?
+            void square(int *p){
+            int a = 10;
+            p = &a;             //  here the change happend with in the function, because of [p = &a]..
+            *p = (*p) * (*p);
+            cout << *p << endl;     //  Here the output is 100..
+            }
+
+            int main(){
+            int a = 10;
+            square(&a);
+            cout << a << endl;      //  here the output is 10.. It does change the value of 'a'
+            }
+    
+    O/p :-  10
+
+------------------------------>
+        Double Pointers :-
+            int i = 10, *p = &i;
+            int **p2 = &p;      Here this pointer stores the address of another pointer..
+        Ex :-
+            int a = 10;
+            int *p = &a;
+            int **q = &p;
+            int b = 20;
+            *q = &b;
+            (*p)++;
+            cout << a << " " << b << endl;
+        O/p :- 10   21
+    p points to a. q points to p directly and a through p (double pointer). 
+    *q — value stored in p is changed to address of b instead of that of a. 
+    (*p)++ — value that p points to, which now is of b, is incremented by 1 (b becomes 21). 
+    Value of a remains unchanged.
+
+--------------------------------->
+
+            Void Pointer :-
+A	void	pointer	is	a	generic	pointer,	it	has	no	associated	type	with	it.
+    A	void	pointer	can	hold	address	of	any	type	and	can	be	typcasted	to	any	type. Void	
+    pointer	is	declared	normally	the	way	we	do	for	pointers.	
+        void	*ptr;
+
+This	statement	will	create	a	void	pointer.
+        Example:
+        void *v;
+        int *i;
+        int ivar;
+        char chvar;
+        float fvar;
+        v	= &ivar; //	valid
+        v	= &chvar; //valid
+        v	= &fvar; //	valid
+        i	= &ivar; //valid
+        i	= &chvar; //invalid
+        i	= &fvar; //invalid
+        Thus	we	can	use	void	pointer	to	store	address	of	any	variable.
 
 */ 
