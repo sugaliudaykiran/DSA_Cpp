@@ -71,3 +71,36 @@ int main(){
         cout << output[i] << endl;
     return 0;
 }
+
+/*
+
+    #include <string.h>
+#include <map>
+using namespace std;
+
+map <string, char> Keymap;
+
+void printAllPossibleCodes(string input, string output="") {
+    // Given the input as a string, print all its possible combinations. You do not need to return anything.
+    
+    
+    if (input.empty())
+    {
+        cout << output << "\n";
+        return;
+    }
+    
+    char x = 'a';
+    for (int i=1; i<=26; i++, x++)
+    {
+        Keymap[to_string(i)] = x;
+    }
+    
+    printAllPossibleCodes(input.substr(1), output + Keymap[string(1, input[0])]);
+    if (input.size() > 1 && stoi(input.substr(0, 2)) <= 26)
+    {
+    	printAllPossibleCodes(input.substr(2), output + Keymap[input.substr(0, 2)]);	
+    }    
+}
+
+*/ 
