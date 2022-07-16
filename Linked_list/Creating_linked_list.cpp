@@ -56,7 +56,7 @@ Node* takeInput()
 Node* takeInput_Better()
 {
     int data;
-    cin >> data;
+    cin >> data;            //  TC -> O(n)..
 
     Node *head = NULL;      //  Initially, No Node is created..
     Node *tail = NULL;      //  By maintain tail pointer to avoid O(n^2) TC..
